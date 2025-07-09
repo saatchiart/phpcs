@@ -9,6 +9,18 @@ use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\ClassCommentSniff;
 
 final class RequireClassCategoryDocBlockSniff extends ClassCommentSniff
 {
+    /** @inheritDoc */
+    #[\Override]
+    public function register()
+    {
+        return [
+            T_CLASS,
+            T_INTERFACE,
+            T_TRAIT,
+            // T_ENUM,
+        ];
+    }
+
     /** @var array<string, array{ required: bool, allow_multiple: bool }> */
     protected $tags = [
         '@category' => [
