@@ -9,20 +9,12 @@ use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\ClassCommentSniff;
 
 final class RequireClassCategoryDocBlockSniff extends ClassCommentSniff
 {
-    /** @inheritDoc */
-    #[\Override]
-    public function register()
-    {
-        return [
-            T_CLASS,
-            T_INTERFACE,
-            T_TRAIT,
-            // T_ENUM,
-        ];
-    }
-
-    /** @var array<string, array{ required: bool, allow_multiple: bool }> */
-    protected $tags = [
+    /**
+     * @inheritDoc
+     *
+     * @var array<string, array{ required: bool, allow_multiple: bool }>
+     */
+    protected const EXPECTED_TAGS = [
         '@category' => [
             'required' => true,
             'allow_multiple' => false,
@@ -68,6 +60,18 @@ final class RequireClassCategoryDocBlockSniff extends ClassCommentSniff
             'allow_multiple' => false,
         ],
     ];
+
+    /** @inheritDoc */
+    #[\Override]
+    public function register()
+    {
+        return [
+            T_CLASS,
+            T_INTERFACE,
+            T_TRAIT,
+            // T_ENUM,
+        ];
+    }
 
     /**
      * @param File $phpcsFile
